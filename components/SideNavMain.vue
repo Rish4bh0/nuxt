@@ -38,8 +38,17 @@
       </div>
 
       <button class="lg:block hidden text-[#F02C56] pt-1.5 pl-2 text-[13px]">
-        See all
+        See more
       </button>
+      <div class="lg:block hidden border-b lg:ml-2 mt-2"/>
+
+      <div class="lg:block hidden text-[11px] text-gray-500">
+                <div class="pt-4 px-2">About Newsroom Contact Careers ByteDance</div>
+                <div class="pt-4 px-2">For Good Advertise Developers Transparency </div>
+                <div class="pt-4 px-2">Help Safety Terms Privacy Creator Portal Community Guidelines</div>
+                <div class="pt-4 px-2">© 2023 </div>
+            </div>
+            <div class="pb-14"></div>
     </div>
   </div>
 </template>

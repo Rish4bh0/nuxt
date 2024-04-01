@@ -9,7 +9,7 @@
     >
       <div :class="route.fullPath === '/' ? 'w-[80%]' : 'lg:w-[20%] w-[70%]'">
         <NuxtLink to="/">
-          <img width="115" src="" alt="logo" />
+          <img width="115" src="~/assets/images/tiktok-logo.png" alt="logo" />
         </NuxtLink>
       </div>
 
@@ -30,6 +30,7 @@
         class="flex items-center justify-end gap-3 min-w-[275px] max-w-[320px] w-full"
       >
         <button
+        @click = "redirectToUploadPage"
           class="flex items-center border rounded-sm px-3 py-[6px] hover:bg-gray-100"
         >
           <Icon name="material-symbols:add" color="000000" size="22" />
@@ -65,6 +66,7 @@
             class="absolute bg-white rounded-lg py-1.5 w-[200px] shadow-xl border top-[43px] -right-2"
             >
             <NuxtLink
+            to="/upload"
             @click="$event => showMenu = false"
             class="flex items-center justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer"
             > 
@@ -93,4 +95,16 @@
 <script setup>
 const route = useRoute();
 let showMenu = ref(false)
+
+
+
+  async function  redirectToUploadPage() {
+      
+      const router = useRouter();
+      
+      router.push('/upload'); 
+    }
+  
+
+
 </script>
