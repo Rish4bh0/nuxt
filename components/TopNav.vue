@@ -4,10 +4,10 @@
     class="fixed bg-white z-30 flex item-center w-full vorder-b h-[61px]"
   >
     <div
-      :class="route.fullPath === '/' ? 'max-w-[1150px]' : ''"
+      :class="route.fullPath === '/'|| route.fullPath === '/np' ? 'max-w-[1150px]' : ''"
       class="flex items-center justify-between w-full px-6 mx-auto"
     >
-      <div :class="route.fullPath === '/' ? 'w-[80%]' : 'lg:w-[20%] w-[70%]'">
+      <div :class="route.fullPath === '/'|| route.fullPath === '/np' ? 'w-[80%]' : 'lg:w-[20%] w-[70%]'">
         <NuxtLink to="/">
           <img width="115" src="~/assets/images/tiktok-logo.png" alt="logo" />
         </NuxtLink>
@@ -18,7 +18,7 @@
       >
         <input
           type="text"
-          class="w-full pl-3 my-2 bg-transparent placeholder-[#838383] text-[15px] focus:outline-none"
+          class="w-full pl-3 my-2 bg-transparent placeholder-[#838383] text-[15px] focus:outline-none "
           placeholder="Search accounts"
         />
 
@@ -48,8 +48,44 @@
         <div class="flex items-center">
           <Icon class="ml-l mr-4" name="carbon:send-alt" color="#161724" size="30"/>
           <Icon class="mr-5" name="bx:message-detail" color="#161724" size="27"/>
+         
           <div class="relative">
             <button class="mt-1"
+                @click="$event => showLangMenu =!showLangMenu"
+            >
+                <img 
+                class="rounded-full"
+                width="54"
+                src="./../assets/images/ennp.webp"
+                alt="photos"
+                >
+
+            </button>
+            <div 
+            v-if="showLangMenu"
+            id="PopupMenu"
+            class="absolute bg-white rounded-lg py-1.5 w-[200px] shadow-xl border top-[43px] -right-2"
+            >
+          <NuxtLink
+        v-for="locale in locales"
+        :key="locale.code"
+        :to = "switchLocalePath(locale.code)"
+        class="flex items-center justify-start py-3 px-2 hover:bg-gray-100 cursor-pointer "
+        >
+        <span v-if="locale.code === 'en'">
+          <img src="../assets/images/usa.png"  class="rounded-full"
+                width="20">
+  </span>
+  <span v-else-if="locale.code === 'np'">
+    <img src="../assets/images/nepal.png"  class="rounded-full"
+                width="20">
+  </span>
+            {{ locale.name }}
+        </NuxtLink>
+        </div>
+        </div>
+          <div class="relative">
+            <button class="mt-1 ml-3"
                 @click="$event => showMenu =!showMenu"
             >
                 <img 
@@ -75,6 +111,8 @@
 
             </NuxtLink>
 
+            
+
             <div
            
             class="flex items-center justify-start py-3 px-1.5 hover:bg-gray-100 border-t cursor-pointer"
@@ -95,6 +133,7 @@
 <script setup>
 const route = useRoute();
 let showMenu = ref(false)
+let showLangMenu = ref(false)
 
 
 
@@ -105,6 +144,7 @@ let showMenu = ref(false)
       router.push('/upload'); 
     }
   
-
+    const switchLocalePath = useSwitchLocalePath()
+const { locales } = useI18n()
 
 </script>
